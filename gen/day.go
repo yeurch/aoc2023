@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
@@ -15,7 +14,7 @@ import (
 
 	"github.com/yeurch/aoc2023/util"
 	"github.com/zellyn/kooky"
-	"github.com/zellyn/kooky/chrome"
+	_ "github.com/zellyn/kooky/allbrowsers"
 )
 
 var (
@@ -116,7 +115,7 @@ func genDay(n int) {
 			panic(err)
 		}
 
-		if err := ioutil.WriteFile(filepath.Join(p, "input.txt"), problemInput, 0644); err != nil {
+		if err := os.WriteFile(filepath.Join(p, "input.txt"), problemInput, 0644); err != nil {
 			panic(err)
 		}
 	}
@@ -163,15 +162,7 @@ func getInput(day int) ([]byte, error) {
 	_, _ = os.UserConfigDir()
 	_, _ = os.UserCacheDir()
 
-	cookiePath, err := chromeCookiePath()
-	if err != nil {
-		return nil, err
-	}
-
-	cookies, err := chrome.ReadCookies(cookiePath, kooky.Valid, kooky.Name("session"), kooky.Domain(".adventofcode.com"))
-	if err != nil {
-		return nil, err
-	}
+	cookies := kooky.ReadCookies(kooky.Valid, kooky.DomainHasSuffix("adventofcode.com"), kooky.Name("session"))
 
 	if len(cookies) != 1 {
 		return nil, fmt.Errorf("session cookie not found or too many results. Got %d, want 1, ensure that you are logged in", len(cookies))
