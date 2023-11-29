@@ -13,14 +13,24 @@ go test ./...
 
 ## Running the Solutions
 
-To run a solution, use the problem name followed by the path to an input file.
+To run a solution, use the problem name, which consists of the day number followed
+by a or b for the problem.
 
 For example, to run problem 2a:
 
 ```bash
-$ go run ./main.go 2a ./day2/input.txt
+$ go run ./main.go 2 a
 Answer: 9633
 Took 999.4µs
+```
+
+If `input.txt` is not present in the folder for the specified day, or you want to
+use a different file, then you can specify it using the `-i` parameter. For example:
+
+```bash
+$ go run ./main.go 2 a -i challenge/day2/alternate_input.txt
+Answer: 123
+Took 464.3µs
 ```
 
 ## Adding New Solutions
