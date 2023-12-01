@@ -62,4 +62,4 @@ See [LICENSE](./LICENSE) for details.
 
 ## Attribution
 
-The generator (under the `gen/` folder, and `main.go` are heavily based on [nlowe's aoc2020 GitHub repository](https://github.com/nlowe/aoc2020/tree/4c712a8df8904ecc3b886105041c2d011c58aa4c). For the license for this code, please see ATTRIBUTION for details.)
+The generator (under the `gen/` folder, and `main.go`) are heavily based on [nlowe's aoc2020 GitHub repository](https://github.com/nlowe/aoc2020/tree/4c712a8df8904ecc3b886105041c2d011c58aa4c). For the license for this code, please see ATTRIBUTION for details.
