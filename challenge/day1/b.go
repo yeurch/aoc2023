@@ -21,25 +21,25 @@ func bCommand() *cobra.Command {
 
 func partB(challenge *challenge.Input) int {
 	result := 0
-	digits := map[string]rune{
-		"one": '1', "two": '2', "three": '3', "four": '4', "five": '5',
-		"six": '6', "seven": '7', "eight": '8', "nine": '9',
+	digits := []string{
+		"one", "two", "three", "four", "five",
+		"six", "seven", "eight", "nine",
 	}
 	for line := range challenge.Lines() {
-		s := make([]rune, 0)
+		s := make([]int, 0)
 		for i, c := range line {
 			if unicode.IsNumber(c) {
-				s = append(s, c)
+				s = append(s, int(c-'0'))
 				continue
 			}
-			for k, v := range digits {
-				if strings.HasPrefix(string(line[i:]), k) {
-					s = append(s, v)
+			for j, digit := range digits {
+				if strings.HasPrefix(string(line[i:]), digit) {
+					s = append(s, j+1)
 				}
 			}
 		}
-		first := int(s[0] - '0')
-		last := int(s[len(s)-1] - '0')
+		first := s[0]
+		last := s[len(s)-1]
 		result += 10*first + last
 	}
 	return result
