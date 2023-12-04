@@ -46,3 +46,11 @@ func (t *TileMap) TileAt(x, y int) (rune, bool) {
 
 	return t.tiles[idx], true
 }
+
+func (t *TileMap) LineStr(i int) string {
+	chars := make([]rune, t.w)
+	for x := 0; x < t.w; x++ {
+		chars[x], _ = t.TileAt(x, i)
+	}
+	return string(chars)
+}
