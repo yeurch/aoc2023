@@ -44,10 +44,6 @@ func aCommand() *cobra.Command {
 *   (-b +- (b^2 - 4.a.c)^0.5)/(2.a)
 *   (-T +- (T^2 - 4.R)^0.5)/(-2)
 *   (T +- (T^2 - 4.R)^0.5)/2
-*
-*   However, what we really want is the distance between the roots, which is:
-*   2.(b^2 - 4.a.c)^0.5
-*   2.(T^2 - 4.R)^0.5
  */
 func partA(challenge *challenge.Input) int {
 	lines := challenge.LineSlice()
