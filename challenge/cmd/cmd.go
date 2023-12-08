@@ -13,6 +13,7 @@ import (
 	"github.com/yeurch/aoc2023/challenge/day2"
 	"github.com/yeurch/aoc2023/challenge/day3"
 	"github.com/yeurch/aoc2023/challenge/day4"
+	"github.com/yeurch/aoc2023/challenge/day5"
 	"github.com/yeurch/aoc2023/challenge/day6"
 	"github.com/yeurch/aoc2023/challenge/example"
 )
@@ -23,6 +24,7 @@ func addDays(root *cobra.Command) {
 	day2.AddCommandsTo(root)
 	day3.AddCommandsTo(root)
 	day4.AddCommandsTo(root)
+	day5.AddCommandsTo(root)
 	day6.AddCommandsTo(root)
 }
 

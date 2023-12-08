@@ -1,10 +1,16 @@
 package util
 
+import (
+	"fmt"
+	"strings"
+)
+
 type Set[T comparable] interface {
 	Cardinality() int
 	Add(item T) bool
 	Pop() (T, bool)
 	Intersect(other Set[T]) Set[T]
+	Iter() <-chan T
 }
 
 func NewSet[T comparable](items ...T) Set[T] {
@@ -62,7 +68,30 @@ func (s *set[T]) Intersect(other Set[T]) Set[T] {
 	return &intersection
 }
 
+func (s *set[T]) Iter() <-chan T {
+	ch := make(chan T)
+	go func() {
+		for elem := range *s {
+			ch <- elem
+		}
+		close(ch)
+	}()
+
+	return ch
+}
+
 func (s *set[T]) contains(v T) bool {
 	_, ok := (*s)[v]
 	return ok
+}
+
+func (s *set[T]) String() string {
+	var sb strings.Builder
+	sb.WriteString("Set{ ")
+	for elem := range *s {
+		elemStr := fmt.Sprintf("%v, ", elem)
+		sb.WriteString(elemStr)
+	}
+	result := sb.String()
+	return result[:len(result)-2] + " }"
 }
